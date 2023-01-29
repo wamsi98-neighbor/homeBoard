@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<style>
+    .layout {
+        width : 500px;
+        margin : 0 auto;
+    }
+
+    .layout input {
+        width : 100%;
+        margin-top: 50px;
+    }
+
+    .layout textarea {
+        width: 100%;
+        margin-top : 15px;
+        min-height: 300px;
+    }
+</style>
+
+<body>
+<div class="layout">
+    <form  th:action="@{/board/update/{id}(id=${update.id})}"  method="post">
+        <input type="text" name="title" th:value="${update.title}">
+        <textarea name="content" th:text="${update.content}"></textarea>
+        <button name="submit">수정</button>
+    </form>
+</div>
+</body>
+</html>

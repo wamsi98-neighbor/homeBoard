@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${board.title}"> 상세 페이지여</h1>
+<h1 th:text="${board.content}"> 상세 페이지여</h1>
+<a th:href="@{/board/modify/{id}(id=${board.id})}">글수정</a>
+<a th:href="@{/board/delete(id=${board.id})}">글삭제</a>   <!-- @{/경로(글번호 = {model에서 받은 값})}-->
+</body>
+</html>

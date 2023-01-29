@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<style>
+    .layout {
+        width : 500px;
+        margin : 0 auto;
+    }
+
+    .layout input {
+        width : 100%;
+        margin-top: 50px;
+    }
+
+    .layout textarea {
+        width: 100%;
+        margin-top : 15px;
+        min-height: 300px;
+    }
+</style>
+
+<body>
+<div class="layout">
+    <form action="/board/writepro"  method="post">
+            <input type="text" name="title">
+            <textarea name="content"></textarea>
+            <button name="submit">작성</button>
+    </form>
+</div>
+</body>
+</html>

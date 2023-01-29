@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board List</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<style>
+  .layout {
+    width : 500px;
+    margin : 0 auto;
+  }
+</style>
+<body>
+    <div class="layout">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th><th>게시글</th>
+                </tr>
+            </thead>
+                <tr th:each="board : ${paging}">
+                    <td th:text="${board.id}"></td>
+                    <td>
+                        <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+                    </td>
+                    <td th:text="${board.content}"></td>
+                </tr>
+        </table>
+
+
+        <div th:if="${!paging.isEmpty()}">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'"> <!--  !paging.hasPrevious 이전 페이지가 없으면 비활성화-->
+                    <a class="page-link" th:href="@{|?page=${paging.number -1}|}">          <!-- 이전페이지 링크로 이동 -->
+                        <span>이전</span>
+                    </a>
+                </li>
+                <!-- 시작번호부터 끝번호까지 루프를 만드는 타임리프 유틸리티 #numbers.sequence(시작, 끝)-->
+                <!-- 현재페이지와 같다면 active적용 -> th:classappend="${page == paging.number} ? 'active'"-->
+                <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                    th:if="${page >= paging.number -4 and page <=paging.number+4}"
+                    th:classappend="${page == paging.number} ? 'active'"   class="page-item">
+                    <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'"> <!--  !paging.hasNext 다음 페이지가 없으면 비활성화-->
+                    <a class="page-link" th:href="@{|?page=${paging.number+1}|}">       <!-- 다음페이지 링크로 이동 -->
+                        <span>다음</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 페이징처리 끝 -->
+
+    </div>
+</body>
+</html>
